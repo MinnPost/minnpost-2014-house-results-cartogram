@@ -60,14 +60,14 @@ require([
         d.winner_name = (c1win) ? d.cand_1_name : d.cand_2_name;
         d.winner_party = (c1win) ? d.cand_1_party : d.cand_2_party;
         d.winner_percent = (c1win) ? d.cand_1_percent : d.cand_2_percent;
-        d.winner_incumber = (d.winner_name === d.incumbent);
+        d.winner_incumbent = (d.winner_name === d.incumbent);
         d.loser_name = (c1win) ? d.cand_2_name : d.cand_1_name;
         d.loser_party = (c1win) ? d.cand_2_party : d.cand_1_party;
         d.loser_percent = (c1win) ? d.cand_2_percent : d.cand_1_percent;
-        d.loser_incumber = (d.loser_name === d.incumbent);
+        d.loser_incumbent = (d.loser_name === d.incumbent);
 
-        d.incumbent_won = (d.winner_name === d.incumbent);
         d.party_flip = (d.winner_party !== d.incumbent_party);
+        d.uncontested = (!d.loser_name);
 
         return d;
       });

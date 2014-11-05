@@ -57,6 +57,10 @@ body .node-unpublished {
       &.has-value {
         background-color: #BDBDBD;
         cursor: pointer;
+
+        &:hover {
+          border: 2px solid #676767;
+        }
       }
 
       &.active {

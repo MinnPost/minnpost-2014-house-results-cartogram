@@ -72,9 +72,30 @@
           <div class="district-display" intro="fade" outro="fade">
             <h3>District {{ f.removeLead(district) }}</h3>
 
-            <p>
-              The <span class="color-political-{{ winner_party.toLowerCase() }}">{{ winner_party }}</span> {{#incumbent_won}}incumbent{{/incumbent_won}} candidate, {{ winner_name }}, won the district {{ winner_percent }}% to {{ loser_percent }}% against the <span class="color-political-{{ loser_party.toLowerCase() }}">{{ loser_party }}</span> challenger, {{ loser_name }}{{#party_flip}}, flipping the party in this district{{/party_flip}}.
-            </p>
+            {{^uncontested}}
+              <p>
+                The
+                <span class="color-political-{{ winner_party.toLowerCase() }}">{{ winner_party }}</span>
+                {{#winner_incumbent}}incumbent{{/winner_incumbent}} candidate, {{ winner_name }},
+                won the district by a margin {{ margin }}% against the
+                <span class="color-political-{{ loser_party.toLowerCase() }}">{{ loser_party }}</span>
+                {{#loser_incumbent}}incumbent{{/loser_incumbent}} challenger,
+                {{ loser_name }}{{#party_flip}}, flipping the party in this district{{/party_flip}}.
+              </p>
+            {{/uncontested}}
+
+            {{#uncontested}}
+              <p>
+                The
+                <span class="color-political-{{ winner_party.toLowerCase() }}">{{ winner_party }}</span>
+                {{#winner_incumbent}}incumbent{{/winner_incumbent}} candidate, {{ winner_name }},
+                won uncontested.
+              </p>
+            {{/uncontested}}
+
+            {{#not_fully_reported}}
+              <p class="caption">Not all precincts have reported in on this race yet.</p>
+            {{/not_fully_reported}}
 
             {{#boundary.simple_shape }}
               <div class="map" decorator="map:{{ this }}"></div>
