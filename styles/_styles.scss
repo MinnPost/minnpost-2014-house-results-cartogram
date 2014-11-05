@@ -1,0 +1,134 @@
+/**
+ * Main styles for: minnpost-2014-house-results-cartogram
+ */
+
+
+// This makes the unpublished background not as annoying
+body .node-unpublished {
+  background-repeat: no-repeat;
+}
+
+
+@mixin default-d() {
+  background-color: lighten(desaturate(#0793ab, 30%), 30%) !important;
+}
+@mixin highlight-d() {
+  background-color: #0793ab !important;
+}
+@mixin default-r() {
+  background-color: lighten(desaturate(#a1000f, 30%), 30%) !important;
+}
+@mixin highlight-r() {
+  background-color: #a1000f !important;
+}
+
+
+
+// Wrap everything for specificity
+.mp .minnpost-2014-house-results-cartogram-container {
+
+  .application-container {
+    padding-top: 3em;
+  }
+
+  table.arrangement {
+    margin-bottom: 3em;
+    width: 100%;
+    max-width: 100%;
+
+    tr, td {
+      margin: 0;
+      padding: 0;
+      border: none;
+      text-align: center;
+    }
+
+    td {
+    }
+
+    .grid {
+      border: 2px solid #FFFFFF;
+      width: 3px;
+      height: 3px;
+      color: #FFFFFF;
+      @include border-radius(3px);
+      display: block;
+
+      &.has-value {
+        background-color: #BDBDBD;
+        cursor: pointer;
+      }
+
+      &.active {
+        border: 2px solid #232323;
+      }
+
+      &.bg-color-political-r {
+        @include default-r();
+      }
+
+      &.bg-color-political-dfl {
+        @include default-d();
+      }
+
+      &.bg-color-political-r.flipped {
+        @include highlight-r();
+      }
+
+      &.bg-color-political-dfl.flipped {
+          @include highlight-d();
+      }
+    }
+
+    .place-labels td {
+      padding-top: 0.85em;
+      font-size: 1.15em;
+    }
+  }
+
+  .district-display {
+
+    .map {
+      height: 20em;
+    }
+  }
+
+  .legend {
+    font-size: 0.85em;
+    margin-bottom: 2em;
+    text-align: center;
+
+    div {
+      @include inline-block();
+    }
+
+    .legend-item {
+      margin-right: 1em;
+
+      div {
+        height: 1em;
+        width: 1em;
+        vertical-align: middle;
+      }
+
+      .legend-r { @include default-r(); }
+      .legend-r-flip { @include highlight-r(); }
+      .legend-d { @include default-d(); }
+      .legend-d-flip { @include highlight-d(); }
+    }
+  }
+
+  // Default responsive points
+  // $responsive-points: (
+  //   ("all", 0px),
+  //   ("small", 420px),
+  //   ("medium", 640px),
+  //   ("large", 960px),
+  //   ("xlarge", 1200px)
+  // ) !default;
+
+  // Medium breakpoint
+  @media screen and (max-width: nth(nth($responsive-points, 3), 2)) {
+
+  }
+}

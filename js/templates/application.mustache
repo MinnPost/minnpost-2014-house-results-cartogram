@@ -1,0 +1,102 @@
+<div class="application-container">
+  <div class="message-container"></div>
+
+  <div class="content-container">
+
+
+    <div class="row">
+      <div class="cartogram column-medium-66">
+        <table class="arrangement">
+          <tbody>
+            {{#aRows:ar}}
+              <tr>
+                {{#aColumns:ac}}
+                  <td>
+                    <div
+                      on-tap="selectDistrict:{{ r[a[f.padLeft(ac) + f.padLeft(ar)]] }}"
+                      class="grid
+                        {{#(a[f.padLeft(ac) + f.padLeft(ar)])}}has-value{{/()}}
+                        bg-color-political-{{ r[a[f.padLeft(ac) + f.padLeft(ar)]].winner_party.toLowerCase() }}
+                        {{#(r[a[f.padLeft(ac) + f.padLeft(ar)]].party_flip)}}flipped{{/()}}
+                        {{#(r[a[f.padLeft(ac) + f.padLeft(ar)]].district === district.district)}}active{{/()}}
+                      "
+                      style="
+                        width: {{ gs }}px;
+                        height: {{ gs }}px;
+                        font-size: {{ gs * 0.3 }}px;
+                        line-height: {{ gs * 0.9 }}px;
+                      "
+                        title="District {{ r[a[f.padLeft(ac) + f.padLeft(ar)]].district }}">
+                      {{ r[a[f.padLeft(ac) + f.padLeft(ar)]].district }}
+                    </div>
+                  </td>
+                {{/aColumns}}
+              </tr>
+            {{/aRows}}
+
+            <tr class="place-labels">
+              <td colspan="8">Greater Minnesota</td>
+              {{#(!sizeSmall || (sizeSmall && ac < as))}}
+                <td colspan="{{ aColumns.length - 8 }}">Metro area</td>
+              {{/()}}
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-r"></div> GOP win
+          </div>
+
+          <div class="legend-item">
+            <div class="legend-r-flip"></div> Flip to GOP
+          </div>
+
+          <div class="legend-item">
+            <div class="legend-d"></div> DFL win
+          </div>
+
+          <div class="legend-item">
+            <div class="legend-d-flip"></div> Flip to DFL
+          </div>
+        </div>
+
+      </div>
+
+      <div class="district-details column-medium-33">
+
+        {{#(!district)}}
+          <p class="details-placeholder em text-center">Click on a district to see result details.</p>
+        {{/()}}
+        {{#district}}
+          <div class="district-display" intro="fade" outro="fade">
+            <h3>District {{ f.removeLead(district) }}</h3>
+
+            <p>
+              The <span class="color-political-{{ winner_party.toLowerCase() }}">{{ winner_party }}</span> {{#incumbent_won}}incumbent{{/incumbent_won}} candidate, {{ winner_name }}, won the district {{ winner_percent }}% to {{ loser_percent }}% against the <span class="color-political-{{ loser_party.toLowerCase() }}">{{ loser_party }}</span> challenger, {{ loser_name }}{{#party_flip}}, flipping the party in this district{{/party_flip}}.
+            </p>
+
+            {{#boundary.simple_shape }}
+              <div class="map" decorator="map:{{ this }}"></div>
+            {{/boundary.simple_shape}}
+            {{^boundary.simple_shape}}
+              <div class="loading-container">
+                <i class="loading"></i> Loading map...
+              </div>
+            {{/boundary.simple_shape}}
+          </div>
+        {{/district}}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footnote-container">
+    <div class="footnote">
+      <p>Some code, techniques, and data on <a href="https://github.com/minnpost/minnpost-2014-house-results-cartogram" target="_blank">Github</a>.</p>
+
+        <p>Some map data © OpenStreetMap contributors; licensed under the <a href="http://www.openstreetmap.org/copyright" target="_blank">Open Data Commons Open Database License</a>.  Some map design © MapBox; licensed according to the <a href="http://mapbox.com/tos/" target="_blank">MapBox Terms of Service</a>.  Location geocoding provided by <a href="http://www.mapquest.com/" target="_blank">Mapquest</a> and is not guaranteed to be accurate.</p>
+
+    </div>
+  </div>
+</div>
