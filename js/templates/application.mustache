@@ -97,6 +97,10 @@
               <p class="caption">Not all precincts have reported in on this race yet.</p>
             {{/not_fully_reported}}
 
+            {{#(margin < 0.5)}}
+              <p class="caption">With a margin of less than 0.5 percentage-points, the losing candidate could ask for a recount of this race.</p>
+            {{/()}}
+
             {{#boundary.simple_shape }}
               <div class="map" decorator="map:{{ this }}"></div>
             {{/boundary.simple_shape}}
