@@ -8,7 +8,7 @@ define('text!../bower.json',[],function () { return '{\n  "name": "minnpost-2014
 // Create main application
 define('base',['jquery', 'underscore', 'backbone', 'lazyload', 'mpFormatters', 'text!../bower.json'],
   function($, _, Backbone, Lazyload, formatters, bower) {
-  
+  'use strict';
 
   var Base = {};
   bower = JSON.parse(bower);
@@ -272,7 +272,7 @@ require([
   tApplication,
   dDistricts, dResults
   ) {
-  
+  'use strict';
 
   // Create new class for app
   var App = Base.BaseApp.extend({
