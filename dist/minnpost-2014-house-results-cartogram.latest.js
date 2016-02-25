@@ -280,7 +280,7 @@ require([
     defaults: {
       name: 'minnpost-2014-house-results-cartogram',
       el: '.minnpost-2014-house-results-cartogram-container',
-      boundaryAPI: '//boundaries.minnpost.com/1.0/boundary/[[[ID]]]-state-house-district-2012?callback=?'
+      boundaryAPI: 'https://boundaries.minnpost.com/1.0/boundary/[[[ID]]]-state-house-district-2012?callback=?'
     },
 
     initialize: function() {
